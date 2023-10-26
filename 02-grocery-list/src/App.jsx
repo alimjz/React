@@ -8,11 +8,11 @@ function App() {
 
   const handleChangeInputValue = (e) => {
     setInputValue(e.target.value);
-  }
+  };
 
   const handleAddGroceryItem = (e) => {
-    if(e.key === "Enter"){
-      if(inputValue){
+    if (e.key === "Enter") {
+      if (inputValue) {
         setGroceryItems([
           ...groceryItems,
           {
@@ -20,17 +20,31 @@ function App() {
             name: inputValue,
             completed: false,
           },
-        ])
+        ]);
         setInputValue("");
       }
     }
-  }
+  };
+
+  const renderGroceryList = () => {
+    return groceryItems.map((item) => (
+      <li>
+        <div className="container">
+          <input type="checkbox" />
+          <p>{item.name}</p>
+        </div>
+        <div>
+          <button className="remove-button">X</button>
+        </div>
+      </li>
+    ));
+  };
+
   return (
     <main className="App">
       <div>
         <div>
           <h4 className="success">You're Done</h4>
-          {JSON.stringify(groceryItems)}
           <div className="header">
             <h1>Shopping List</h1>
             <img src={groceryCartImg} alt="" />
@@ -45,15 +59,7 @@ function App() {
           </div>
         </div>
         <ul>
-          <li>
-            <div className="container">
-              <input type="checkbox" />
-              <p>Carrots</p>
-            </div>
-            <div>
-              <button className="remove-button">X</button>
-            </div>
-          </li>
+          {renderGroceryList()}
         </ul>
       </div>
     </main>
