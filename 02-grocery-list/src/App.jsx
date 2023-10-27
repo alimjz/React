@@ -63,7 +63,7 @@ function App() {
         return groceryItems.map((item,index) => (
             <li key={item.name}>
                 <div className="container">
-                    <input type="checkbox" onChange={(e)=>{
+                    <input type="checkbox" onChange={()=>{
                         handleUpdateCompleteStatus(true,index);
                     }}
                     value={
